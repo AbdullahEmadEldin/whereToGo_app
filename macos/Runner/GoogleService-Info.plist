@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyCS898FEAgOjRI2Vbq218TtD_lDG_3L0nI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>109367698421</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.mapsApp.RunnerTests</string>
+	<key>PROJECT_ID</key>
+	<string>maps-app-3efb4</string>
+	<key>STORAGE_BUCKET</key>
+	<string>maps-app-3efb4.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:109367698421:ios:985f0c7c2f5e5a6e5b76bc</string>
+</dict>
+</plist>
