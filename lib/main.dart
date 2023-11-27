@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:maps_app/firebase_options.dart';
 import 'package:maps_app/theme/app_theme.dart';
 import 'package:maps_app/theme/theme_manager.dart';
+import 'package:maps_app/util/navigation/router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,6 +24,8 @@ class MapsApp extends StatefulWidget {
 
 class _MapsAppState extends State<MapsApp> {
   @override
+
+  ///these listners for switching theme
   void dispose() {
     _themeManager.removeListener(themeListener);
     super.dispose();
@@ -42,13 +45,12 @@ class _MapsAppState extends State<MapsApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: AppRouter.router,
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
       theme: AppThemes.light(),
       darkTheme: AppThemes.dark(),
       themeMode: _themeManager.themeMode,
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -63,14 +65,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -94,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
               style: theme.textTheme.bodyLarge,
             ),
             Text(
-              '$_counter',
+              'counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             const SizedBox(
@@ -115,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () {},
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
