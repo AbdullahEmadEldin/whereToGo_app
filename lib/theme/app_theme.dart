@@ -17,22 +17,22 @@ class AppThemes {
     displayLarge: GoogleFonts.openSans(
       fontSize: 32.0,
       fontWeight: FontWeight.bold,
-      color: kLightColorScheme.onPrimary,
+      color: kLightColorScheme.onPrimaryContainer,
     ),
     displayMedium: GoogleFonts.openSans(
       fontSize: 21.0,
       fontWeight: FontWeight.w700,
-      color: kLightColorScheme.onPrimary,
+      color: kLightColorScheme.onPrimaryContainer,
     ),
     displaySmall: GoogleFonts.openSans(
       fontSize: 16.0,
       fontWeight: FontWeight.w600,
-      color: kLightColorScheme.onPrimary,
+      color: kLightColorScheme.onPrimaryContainer,
     ),
     titleLarge: GoogleFonts.openSans(
       fontSize: 20.0,
       fontWeight: FontWeight.w600,
-      color: kLightColorScheme.onPrimary,
+      color: kLightColorScheme.onPrimaryContainer,
     ),
   );
 // 2
@@ -40,7 +40,7 @@ class AppThemes {
     bodyLarge: GoogleFonts.openSans(
       fontSize: 14.0,
       fontWeight: FontWeight.w700,
-      color: kDarkColorScheme.primary,
+      color: kDarkColorScheme.onPrimary,
     ),
     displayLarge: GoogleFonts.openSans(
       fontSize: 32.0,
@@ -50,7 +50,7 @@ class AppThemes {
     displayMedium: GoogleFonts.openSans(
       fontSize: 21.0,
       fontWeight: FontWeight.w700,
-      color: kDarkColorScheme.onPrimary,
+      color: Colors.white,
     ),
     displaySmall: GoogleFonts.openSans(
       fontSize: 16.0,
@@ -88,6 +88,11 @@ class AppThemes {
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         selectedItemColor: Colors.green,
       ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+              backgroundColor: kLightColorScheme.shadow,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(6)))),
       textTheme: lightTextTheme,
     );
   }
@@ -107,6 +112,13 @@ class AppThemes {
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         selectedItemColor: Colors.green,
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+            backgroundColor: kLightColorScheme.inversePrimary,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+            minimumSize: const Size(130, 70)),
       ),
       textTheme: darkTextTheme,
     );
