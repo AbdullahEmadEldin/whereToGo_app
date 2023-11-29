@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:maps_app/business%20logic/phone_auth/cubit/phone_auth_cubit.dart';
 import 'package:maps_app/generated/l10n.dart';
 import 'package:maps_app/util/navigation/routes.dart';
 
@@ -33,6 +35,7 @@ class PhoneAuthPage extends StatelessWidget {
                 _buildPhoneFormFeild(context),
                 SizedBox(height: size.height * 0.1),
                 _buildNextButton(context),
+                _buildSubmitionBlocListner(),
               ],
             ),
           ),
@@ -105,14 +108,42 @@ class PhoneAuthPage extends StatelessWidget {
       alignment: Alignment.bottomRight,
       child: ElevatedButton(
         onPressed: () {
-          context.goNamed(AppRoutes.otpScreen);
+          if (_phoneFormKey.currentState!.validate()) {
+            _phoneFormKey.currentState!.save();
+            // context.goNamed(AppRoutes.otpScreen);
+            BlocProvider.of<PhoneAuthCubit>(context)
+                .submitPhoneNumber(phoneNumber);
+          }
         },
-        style: Theme.of(context)
-            .elevatedButtonTheme
-            .style!
-            .copyWith(minimumSize: MaterialStatePropertyAll(Size(110, 50))),
+        style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
+            minimumSize: const MaterialStatePropertyAll(Size(110, 50))),
         child: Text(S.of(context).Next),
       ),
     );
+  }
+
+  Widget _buildSubmitionBlocListner() {
+    return BlocListener<PhoneAuthCubit, PhoneAuthState>(
+      listenWhen: (previous, current) => previous != current,
+      listener: ((context, state) {
+        if (state is Loading) {
+          _showProgressIndicator();
+        } else if (state is PhoneNumberSubmitted) {
+          context.goNamed(AppRoutes.otpScreen);
+        } else if (state is Error) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.errorMsg),
+              duration: const Duration(seconds: 3),
+            ),
+          );
+        }
+      }),
+      child: const SizedBox(),
+    );
+  }
+
+  Widget _showProgressIndicator() {
+    return const Center(child: CircularProgressIndicator());
   }
 }
