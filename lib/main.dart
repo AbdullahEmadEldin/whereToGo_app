@@ -1,9 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:maps_app/firebase_options.dart';
+import 'package:maps_app/generated/l10n.dart';
 import 'package:maps_app/theme/app_theme.dart';
 import 'package:maps_app/theme/theme_manager.dart';
 import 'package:maps_app/util/navigation/router.dart';
+// ignore: depend_on_referenced_packages
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,11 +49,19 @@ class _MapsAppState extends State<MapsApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      locale: Locale('en'),
       routerConfig: AppRouter.router,
       debugShowCheckedModeBanner: false,
       theme: AppThemes.light(),
       darkTheme: AppThemes.dark(),
       themeMode: _themeManager.themeMode,
+      localizationsDelegates: const [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: S.delegate.supportedLocales,
     );
   }
 }
