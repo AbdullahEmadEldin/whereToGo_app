@@ -1,16 +1,14 @@
-# maps_app
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Where To Go is Flutter application that have multiple features includes:
+    - Simple user interface
+    - Phone Authentication
+    - Searching for good places in maps
+    - Dark and light theme support
+    - Localization (Support both arabic & englisgh)
+Tehchnical feature:
+  - Navigation: Navigator 2.0 API (using go_router package)
+  - State management: BLoC state management & design architexture
+  - Using dependency Injection design pattern (using get_it package)
+  - Backend:
+      * Firebase phone Authentication
+      * Google maps API
+      * Local storage by Sqlite
