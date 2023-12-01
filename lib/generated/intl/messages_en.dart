@@ -24,6 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "EnterDigits": MessageLookupByLibrary.simpleMessage(
             "Enter your 6 digits code numbers sent to you at "),
+        "LogOut": MessageLookupByLibrary.simpleMessage("Log out"),
         "Next": MessageLookupByLibrary.simpleMessage("Next"),
         "PleaseEnterYourPhoneNumberToVerifyYourAccount":
             MessageLookupByLibrary.simpleMessage(

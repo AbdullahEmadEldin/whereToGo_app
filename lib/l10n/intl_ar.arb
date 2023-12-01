@@ -4,6 +4,7 @@
     "Next": "التالي",
     "VerfiyYourPhoneNumber":"قم بتأكيد رقم هاتفك",
     "EnterDigits": "ادخل الأرقام الستة المرسلة الى هاتفك ",
-    "Verify":"تحقق"
+    "Verify":"تحقق",
+    "LogOut":"تسجيل الخروج"
 
 }

@@ -4,5 +4,6 @@
     "Next": "Next",
     "VerfiyYourPhoneNumber":"Verify your phone number",
     "EnterDigits": "Enter your 6 digits code numbers sent to you at ",
-    "Verify":"Verify"
+    "Verify":"Verify",
+    "LogOut":"Log out"
 } 
