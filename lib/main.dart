@@ -4,11 +4,13 @@ import 'package:maps_app/firebase_options.dart';
 import 'package:maps_app/generated/l10n.dart';
 import 'package:maps_app/theme/app_theme.dart';
 import 'package:maps_app/theme/theme_manager.dart';
+import 'package:maps_app/util/locator.dart';
 import 'package:maps_app/util/navigation/router.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
+  setUp();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

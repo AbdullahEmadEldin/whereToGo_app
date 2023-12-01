@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:maps_app/business%20logic/phone_auth/cubit/phone_auth_cubit.dart';
 import 'package:maps_app/generated/l10n.dart';
+import 'package:maps_app/util/hlepers.dart';
+import 'package:maps_app/util/navigation/routes.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-class OtpPage extends StatefulWidget {
-  OtpPage({Key? key}) : super(key: key);
-
-  @override
-  State<OtpPage> createState() => _OtpPageState();
-}
-
-class _OtpPageState extends State<OtpPage> {
+class OtpPage extends StatelessWidget {
   //late final String phoneNumber;
-
+  late String otpCode;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -46,6 +44,7 @@ class _OtpPageState extends State<OtpPage> {
                 _buildPinCodeFields(context),
                 SizedBox(height: size.height * 0.1),
                 _buildVerifyButton(context),
+                _buildCodeBlocListener(),
               ],
             ),
           ),
@@ -79,6 +78,7 @@ class _OtpPageState extends State<OtpPage> {
       animationDuration: const Duration(milliseconds: 300),
       enableActiveFill: true,
       onCompleted: (code) {
+        otpCode = code;
         print("Completed");
       },
       onChanged: (value) {
@@ -91,11 +91,36 @@ class _OtpPageState extends State<OtpPage> {
     return Align(
       alignment: Alignment.bottomRight,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          BlocProvider.of<PhoneAuthCubit>(context).verifyOtp(otpCode);
+        },
         style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
             minimumSize: const MaterialStatePropertyAll(Size(110, 50))),
         child: Text(S.of(context).Verify),
       ),
+    );
+  }
+
+  Widget _buildCodeBlocListener() {
+    return BlocListener<PhoneAuthCubit, PhoneAuthState>(
+      listenWhen: (previous, current) => previous != current,
+      listener: ((context, state) {
+        if (state is Loading) {
+          showProgressInidcator(context);
+        } else if (state is OtpVerified) {
+          Navigator.pop(context);
+          context.goNamed(AppRoutes.homePage);
+        } else if (state is Error) {
+          Navigator.pop(context);
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.errorMsg),
+              duration: const Duration(seconds: 4),
+            ),
+          );
+        }
+      }),
+      child: const SizedBox(),
     );
   }
 }

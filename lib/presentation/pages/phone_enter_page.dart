@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:maps_app/business%20logic/phone_auth/cubit/phone_auth_cubit.dart';
 import 'package:maps_app/generated/l10n.dart';
+import 'package:maps_app/util/hlepers.dart';
 import 'package:maps_app/util/navigation/routes.dart';
 
 // ignore: must_be_immutable
@@ -10,6 +11,7 @@ class PhoneAuthPage extends StatelessWidget {
   PhoneAuthPage({Key? key}) : super(key: key);
   final GlobalKey<FormState> _phoneFormKey = GlobalKey();
   late String phoneNumber;
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -52,7 +54,7 @@ class PhoneAuthPage extends StatelessWidget {
         Expanded(
           flex: 1,
           child: Container(
-            padding: const EdgeInsets.all(24),
+            padding: const EdgeInsets.all(22),
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.blueGrey),
                 borderRadius: const BorderRadius.all(Radius.circular(6))),
@@ -110,7 +112,6 @@ class PhoneAuthPage extends StatelessWidget {
         onPressed: () {
           if (_phoneFormKey.currentState!.validate()) {
             _phoneFormKey.currentState!.save();
-            // context.goNamed(AppRoutes.otpScreen);
             BlocProvider.of<PhoneAuthCubit>(context)
                 .submitPhoneNumber(phoneNumber);
           }
@@ -127,10 +128,12 @@ class PhoneAuthPage extends StatelessWidget {
       listenWhen: (previous, current) => previous != current,
       listener: ((context, state) {
         if (state is Loading) {
-          _showProgressIndicator();
+          showProgressInidcator(context);
         } else if (state is PhoneNumberSubmitted) {
+          Navigator.pop(context);
           context.goNamed(AppRoutes.otpScreen);
         } else if (state is Error) {
+          Navigator.pop(context);
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(state.errorMsg),
@@ -141,9 +144,5 @@ class PhoneAuthPage extends StatelessWidget {
       }),
       child: const SizedBox(),
     );
-  }
-
-  Widget _showProgressIndicator() {
-    return const Center(child: CircularProgressIndicator());
   }
 }

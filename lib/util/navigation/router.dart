@@ -5,6 +5,7 @@ import 'package:maps_app/business%20logic/phone_auth/cubit/phone_auth_cubit.dart
 import 'package:maps_app/presentation/pages/home_page.dart';
 import 'package:maps_app/presentation/pages/otp_page.dart';
 import 'package:maps_app/presentation/pages/phone_enter_page.dart';
+import 'package:maps_app/util/locator.dart';
 import 'package:maps_app/util/navigation/routes.dart';
 
 class AppRouter {
@@ -12,11 +13,11 @@ class AppRouter {
     initialLocation: '/',
     routes: [
       GoRoute(
-          name: AppRoutes.phoneAuthScreen,
+          name: AppRoutes.phoneEnterScreen,
           path: '/',
           pageBuilder: (context, state) => MaterialPage(
                   child: BlocProvider(
-                create: (_) => PhoneAuthCubit(),
+                create: (_) => locator.get<PhoneAuthCubit>(),
                 child: PhoneAuthPage(),
               )),
           routes: [
@@ -24,10 +25,11 @@ class AppRouter {
               name: AppRoutes.otpScreen,
               path: 'otpScreen',
               pageBuilder: (context, state) => MaterialPage(
-                  child: BlocProvider(
-                create: (_) => PhoneAuthCubit(),
-                child: OtpPage(),
-              )),
+                child: BlocProvider.value(
+                  value: locator.get<PhoneAuthCubit>(),
+                  child: OtpPage(),
+                ),
+              ),
             ),
           ]),
       GoRoute(

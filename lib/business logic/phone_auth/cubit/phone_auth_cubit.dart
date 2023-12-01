@@ -7,10 +7,10 @@ import 'package:meta/meta.dart';
 part 'phone_auth_state.dart';
 
 class PhoneAuthCubit extends Cubit<PhoneAuthState> {
-  late String verificationId;
+  String verificationId = 'xxx';
   PhoneAuthCubit() : super(PhoneAuthInitial());
-
   Future<void> submitPhoneNumber(String phoneNumber) async {
+    emit(Loading());
     await FirebaseAuth.instance.verifyPhoneNumber(
       phoneNumber: '+2$phoneNumber',
       verificationCompleted: _verificationCompleted,
@@ -21,9 +21,15 @@ class PhoneAuthCubit extends Cubit<PhoneAuthState> {
   }
 
   Future<void> verifyOtp(String otpCode) async {
+    print('vvvvverifyFUUUUUUUUUUUUUUUUUUUUk:: $verificationId');
+    //  await _codeSent(verificationId, null);
+    print('verifyFUUUUUUUUUUUUUUUUUUUUk:: $verificationId');
+
     PhoneAuthCredential credential = PhoneAuthProvider.credential(
         verificationId: verificationId, smsCode: otpCode);
-    _signIn(credential);
+    print('FUUUUUUUUUUUUUUUUUUUUk:: $verificationId');
+
+    await _signIn(credential);
   }
 
   Future<void> logOut() async {
@@ -39,6 +45,7 @@ class PhoneAuthCubit extends Cubit<PhoneAuthState> {
   /// ----------------------------------------
 
   Future<void> _signIn(PhoneAuthCredential credential) async {
+    emit(Loading());
     try {
       await FirebaseAuth.instance.signInWithCredential(credential);
       emit(OtpVerified());
@@ -50,7 +57,7 @@ class PhoneAuthCubit extends Cubit<PhoneAuthState> {
 
   ///in case of Automatic handling of the SMS code on Android devices and let you sign in
   _verificationCompleted(PhoneAuthCredential credential) async {
-    _signIn(credential);
+    await _signIn(credential);
   }
 
   _verificationFailed(FirebaseAuthException error) {
@@ -60,7 +67,11 @@ class PhoneAuthCubit extends Cubit<PhoneAuthState> {
 
   _codeSent(String verificationId, int? resendToken) {
     print('code sent ');
+    print('Coode sent FUUUUUUUUUUUUUUUUUUUUk::111 ${verificationId}');
+
     this.verificationId = verificationId;
+    print('code sent FUUUUUUUUUUUUUUUUUUUUk::2222 ${verificationId}');
+
     emit(PhoneNumberSubmitted());
   }
 
