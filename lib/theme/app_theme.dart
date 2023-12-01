@@ -90,7 +90,7 @@ class AppThemes {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-              backgroundColor: kLightColorScheme.shadow,
+              backgroundColor: kLightColorScheme.primary,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(6)))),
       textTheme: lightTextTheme,

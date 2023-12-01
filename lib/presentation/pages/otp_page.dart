@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:maps_app/business%20logic/phone_auth/cubit/phone_auth_cubit.dart';
 import 'package:maps_app/generated/l10n.dart';
-import 'package:maps_app/util/hlepers.dart';
+import 'package:maps_app/util/helpers.dart';
 import 'package:maps_app/util/navigation/routes.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -58,6 +58,7 @@ class OtpPage extends StatelessWidget {
       appContext: context,
       autoFocus: true,
       length: 6,
+      keyboardType: TextInputType.number,
       obscureText: false,
       animationType: AnimationType.scale,
       cursorColor: Colors.blue,
@@ -79,10 +80,6 @@ class OtpPage extends StatelessWidget {
       enableActiveFill: true,
       onCompleted: (code) {
         otpCode = code;
-        print("Completed");
-      },
-      onChanged: (value) {
-        print(value);
       },
     );
   }

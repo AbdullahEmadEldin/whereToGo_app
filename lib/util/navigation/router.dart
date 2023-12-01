@@ -9,45 +9,46 @@ import 'package:maps_app/util/locator.dart';
 import 'package:maps_app/util/navigation/routes.dart';
 
 class AppRouter {
-  static final GoRouter _router = GoRouter(
-    initialLocation: '/',
-    routes: [
-      GoRoute(
-          name: AppRoutes.phoneEnterScreen,
-          path: '/',
-          pageBuilder: (context, state) => MaterialPage(
-                  child: BlocProvider(
-                create: (_) => locator.get<PhoneAuthCubit>(),
-                child: PhoneAuthPage(),
-              )),
-          routes: [
-            GoRoute(
-              name: AppRoutes.otpScreen,
-              path: 'otpScreen',
-              pageBuilder: (context, state) => MaterialPage(
-                child: BlocProvider.value(
-                  value: locator.get<PhoneAuthCubit>(),
-                  child: OtpPage(),
+  static GoRouter router(String initialRoute) {
+    return GoRouter(
+      initialLocation: initialRoute,
+      routes: [
+        GoRoute(
+            name: AppRoutes.phoneEnterScreen,
+            path: '/phoneEnterScreen',
+            pageBuilder: (context, state) => MaterialPage(
+                    child: BlocProvider(
+                  create: (_) => locator.get<PhoneAuthCubit>(),
+                  child: PhoneAuthPage(),
+                )),
+            routes: [
+              GoRoute(
+                name: AppRoutes.otpScreen,
+                path: 'otpScreen',
+                pageBuilder: (context, state) => MaterialPage(
+                  child: BlocProvider.value(
+                    value: locator.get<PhoneAuthCubit>(),
+                    child: OtpPage(),
+                  ),
                 ),
               ),
-            ),
-          ]),
-      GoRoute(
-        name: AppRoutes.homePage,
-        path: '/homeScreen',
-        pageBuilder: (context, state) => const MaterialPage(child: HomePage()),
-      )
-    ],
-    errorPageBuilder: (context, state) {
-      return MaterialPage(
-          key: state.pageKey,
-          child: Scaffold(
-            body: Center(
-              child: Text('Error on navigation: ${state.error.toString()}'),
-            ),
-          ));
-    },
-  );
-
-  static GoRouter get router => _router;
+            ]),
+        GoRoute(
+          name: AppRoutes.homePage,
+          path: '/homeScreen',
+          pageBuilder: (context, state) =>
+              const MaterialPage(child: HomePage()),
+        )
+      ],
+      errorPageBuilder: (context, state) {
+        return MaterialPage(
+            key: state.pageKey,
+            child: Scaffold(
+              body: Center(
+                child: Text('Error on navigation: ${state.error.toString()}'),
+              ),
+            ));
+      },
+    );
+  }
 }
