@@ -33,6 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("قم بتأكيد رقم هاتفك"),
         "Verify": MessageLookupByLibrary.simpleMessage("تحقق"),
         "WhatIsYourPhoneNumber":
-            MessageLookupByLibrary.simpleMessage("ما هو رقم هاتفك؟")
+            MessageLookupByLibrary.simpleMessage("ما هو رقم هاتفك؟"),
+        "WhereToGO": MessageLookupByLibrary.simpleMessage("أين نذهب")
       };
 }

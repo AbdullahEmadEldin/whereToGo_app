@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 final kLightColorScheme =
-    ColorScheme.fromSeed(seedColor: Colors.deepPurpleAccent);
+    ColorScheme.fromSeed(seedColor: const Color(0xff18604A));
 final kDarkColorScheme = ColorScheme.fromSeed(
-    seedColor: Colors.deepPurpleAccent, brightness: Brightness.dark);
+    seedColor: const Color(0xff18604A), brightness: Brightness.dark);
 
 class AppThemes {
 // 1
@@ -66,35 +66,36 @@ class AppThemes {
 // 3
   static ThemeData light() {
     return ThemeData(
-      brightness: Brightness.light,
-      colorScheme: kLightColorScheme,
-      scaffoldBackgroundColor: kLightColorScheme.background,
-      checkboxTheme: CheckboxThemeData(
-        fillColor: MaterialStateColor.resolveWith(
-          (states) {
-            return Colors.black;
-          },
+        brightness: Brightness.light,
+        colorScheme: kLightColorScheme,
+        scaffoldBackgroundColor: kLightColorScheme.background,
+        checkboxTheme: CheckboxThemeData(
+          fillColor: MaterialStateColor.resolveWith(
+            (states) {
+              return Colors.black;
+            },
+          ),
         ),
-      ),
-      appBarTheme: AppBarTheme(
-        backgroundColor: kLightColorScheme.primary,
-        foregroundColor: kLightColorScheme.onPrimary,
-        elevation: 5,
-      ),
-      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        appBarTheme: AppBarTheme(
           backgroundColor: kLightColorScheme.primary,
           foregroundColor: kLightColorScheme.onPrimary,
-          elevation: 8),
-      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        selectedItemColor: Colors.green,
-      ),
-      elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-              backgroundColor: kLightColorScheme.primary,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(6)))),
-      textTheme: lightTextTheme,
-    );
+          elevation: 5,
+        ),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+            backgroundColor: kLightColorScheme.primary,
+            foregroundColor: kLightColorScheme.onPrimary,
+            elevation: 8),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          selectedItemColor: Colors.green,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+                backgroundColor: kLightColorScheme.primary,
+                foregroundColor: Colors.white,
+                shape: CircleBorder())),
+        textTheme: lightTextTheme,
+        progressIndicatorTheme:
+            ProgressIndicatorThemeData(color: kDarkColorScheme.primary));
   }
 
 // 4
@@ -116,6 +117,7 @@ class AppThemes {
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
             backgroundColor: kLightColorScheme.inversePrimary,
+            foregroundColor: Colors.black,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
             minimumSize: const Size(130, 70)),
