@@ -8,8 +8,10 @@ import 'package:maps_app/util/navigation/routes.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class OtpPage extends StatelessWidget {
-  //late final String phoneNumber;
+  final String phoneNumber;
   late String otpCode;
+
+  OtpPage({super.key, required this.phoneNumber});
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -34,8 +36,8 @@ class OtpPage extends StatelessWidget {
                           text: S.of(context).EnterDigits,
                           style: theme.textTheme.bodyMedium!
                               .copyWith(height: 1.4)),
-                      const TextSpan(
-                          text: 'phoneNumber',
+                      TextSpan(
+                          text: '+2$phoneNumber',
                           style: TextStyle(color: Colors.blue))
                     ],
                   ),
@@ -103,7 +105,7 @@ class OtpPage extends StatelessWidget {
       listenWhen: (previous, current) => previous != current,
       listener: ((context, state) {
         if (state is Loading) {
-          showProgressInidcator(context);
+          Helpers.showProgressInidcator(context);
         } else if (state is OtpVerified) {
           Navigator.pop(context);
           context.goNamed(AppRoutes.homePage);

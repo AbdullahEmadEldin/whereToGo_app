@@ -128,10 +128,11 @@ class PhoneAuthPage extends StatelessWidget {
       listenWhen: (previous, current) => previous != current,
       listener: ((context, state) {
         if (state is Loading) {
-          showProgressInidcator(context);
+          Helpers.showProgressInidcator(context);
         } else if (state is PhoneNumberSubmitted) {
           Navigator.pop(context);
-          context.goNamed(AppRoutes.otpScreen);
+          context.goNamed(AppRoutes.otpScreen,
+              pathParameters: {'phoneNumber': phoneNumber});
         } else if (state is Error) {
           Navigator.pop(context);
           ScaffoldMessenger.of(context).showSnackBar(

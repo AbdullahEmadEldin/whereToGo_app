@@ -24,13 +24,19 @@ class AppRouter {
             routes: [
               GoRoute(
                 name: AppRoutes.otpScreen,
-                path: 'otpScreen',
-                pageBuilder: (context, state) => MaterialPage(
-                  child: BlocProvider.value(
-                    value: locator.get<PhoneAuthCubit>(),
-                    child: OtpPage(),
-                  ),
-                ),
+                path: 'otpScreen/:phoneNumber',
+                pageBuilder: (context, state) {
+                  final String phoneNumber =
+                      state.pathParameters['phoneNumber']!;
+                  return MaterialPage(
+                    child: BlocProvider.value(
+                      value: locator.get<PhoneAuthCubit>(),
+                      child: OtpPage(
+                        phoneNumber: phoneNumber,
+                      ),
+                    ),
+                  );
+                },
               ),
             ]),
         GoRoute(
