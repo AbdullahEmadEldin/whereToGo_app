@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:maps_app/business%20logic/phone_auth/cubit/phone_auth_cubit.dart';
 import 'package:maps_app/generated/l10n.dart';
+import 'package:maps_app/theme/app_theme.dart';
 import 'package:maps_app/util/helpers.dart';
+import 'package:maps_app/util/locator.dart';
 import 'package:maps_app/util/navigation/routes.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -59,21 +61,28 @@ class OtpPage extends StatelessWidget {
     return PinCodeTextField(
       appContext: context,
       autoFocus: true,
+      enablePinAutofill: true,
       length: 6,
       keyboardType: TextInputType.number,
       obscureText: false,
       animationType: AnimationType.scale,
-      cursorColor: Colors.blue,
+      cursorColor: locator.get<ThemeData>() == AppThemes.lightAppTheme
+          ? kLightColorScheme.primary
+          : Colors.red,
       pinTheme: PinTheme(
         shape: PinCodeFieldShape.box,
         borderRadius: BorderRadius.circular(5),
         fieldHeight: 50,
         fieldWidth: 40,
-        activeFillColor: const Color.fromARGB(255, 188, 226, 245),
+        activeFillColor: kLightColorScheme.primaryContainer,
         inactiveFillColor: Colors.white,
-        activeColor: Colors.blue,
+        activeColor: locator.get<ThemeData>() == AppThemes.lightAppTheme
+            ? kLightColorScheme.primary
+            : Colors.red,
         inactiveColor: Colors.red,
-        selectedColor: Colors.blue,
+        selectedColor: locator.get<ThemeData>() == AppThemes.lightAppTheme
+            ? kLightColorScheme.primary
+            : Colors.red,
         selectedFillColor: Colors.white,
         errorBorderColor: Colors.red,
         borderWidth: 1,

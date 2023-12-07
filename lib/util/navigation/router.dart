@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:maps_app/business%20logic/maps_cubit/cubit/maps_cubit.dart';
 import 'package:maps_app/business%20logic/phone_auth/cubit/phone_auth_cubit.dart';
 import 'package:maps_app/presentation/pages/home_page.dart';
 import 'package:maps_app/presentation/pages/otp_page.dart';
@@ -42,8 +43,11 @@ class AppRouter {
         GoRoute(
           name: AppRoutes.homePage,
           path: '/homeScreen',
-          pageBuilder: (context, state) =>
-              const MaterialPage(child: HomePage()),
+          pageBuilder: (context, state) => MaterialPage(
+              child: BlocProvider(
+            create: (context) => locator.get<MapsCubit>(),
+            child: const HomePage(),
+          )),
         )
       ],
       errorPageBuilder: (context, state) {

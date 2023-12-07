@@ -3,12 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:maps_app/business%20logic/phone_auth/cubit/phone_auth_cubit.dart';
 import 'package:maps_app/generated/l10n.dart';
+import 'package:maps_app/theme/app_theme.dart';
 import 'package:maps_app/util/helpers.dart';
+import 'package:maps_app/util/locator.dart';
 import 'package:maps_app/util/navigation/routes.dart';
 
 // ignore: must_be_immutable
 class PhoneAuthPage extends StatelessWidget {
-  PhoneAuthPage({Key? key}) : super(key: key);
+  PhoneAuthPage({super.key});
   final GlobalKey<FormState> _phoneFormKey = GlobalKey();
   late String phoneNumber;
   bool isLoading = false;
@@ -75,16 +77,20 @@ class PhoneAuthPage extends StatelessWidget {
                 borderRadius: const BorderRadius.all(Radius.circular(6))),
             child: TextFormField(
               autofocus: true,
-              style: const TextStyle(letterSpacing: 2.0),
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  letterSpacing: 2.0,
+                  color: locator.get<ThemeData>() == AppThemes.lightAppTheme
+                      ? kLightColorScheme.primary
+                      : Colors.red),
               decoration: const InputDecoration(
                   border: InputBorder.none, counterText: ''),
               keyboardType: TextInputType.phone,
               maxLength: 11,
               validator: (value) {
                 if (value!.isEmpty) {
-                  return 'Please enter your number';
+                  return S.of(context).PleaseEnterYourNumber;
                 } else if (value.length < 11) {
-                  return 'Invalid number';
+                  return S.of(context).InvalidNumber;
                 }
                 return null;
               },

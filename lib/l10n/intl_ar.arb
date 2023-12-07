@@ -1,6 +1,8 @@
 {
     "WhatIsYourPhoneNumber": "ما هو رقم هاتفك؟",
     "PleaseEnterYourPhoneNumberToVerifyYourAccount": " من فضلك أدخل رقم هاتفك لكي يتم التحقق من حسابك",
+    "PleaseEnterYourNumber":"من فضلك أدخل رقمك",
+    "InvalidNumber":"الرقم غير صحيح",
     "Next": "التالي",
     "VerfiyYourPhoneNumber":"قم بتأكيد رقم هاتفك",
     "EnterDigits": "ادخل الأرقام الستة المرسلة الى هاتفك ",

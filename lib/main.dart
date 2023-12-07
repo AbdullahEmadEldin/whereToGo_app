@@ -61,8 +61,8 @@ class _MapsAppState extends State<MapsApp> {
       locale: Locale('en'),
       routerConfig: AppRouter.router(_initialRoute),
       debugShowCheckedModeBanner: false,
-      theme: AppThemes.light(),
-      darkTheme: AppThemes.dark(),
+      theme: locator.get<ThemeData>(),
+      darkTheme: AppThemes.darkAppTheme,
       themeMode: _themeManager.themeMode,
       localizationsDelegates: const [
         S.delegate,

@@ -21,12 +21,8 @@ class PhoneAuthCubit extends Cubit<PhoneAuthState> {
   }
 
   Future<void> verifyOtp(String otpCode) async {
-    print('vvvvverifyFUUUUUUUUUUUUUUUUUUUUk:: $verificationId');
-    print('verifyFUUUUUUUUUUUUUUUUUUUUk:: $verificationId');
-
     PhoneAuthCredential credential = PhoneAuthProvider.credential(
         verificationId: verificationId, smsCode: otpCode);
-    print('FUUUUUUUUUUUUUUUUUUUUk:: $verificationId');
 
     await _signIn(credential);
   }
@@ -66,10 +62,8 @@ class PhoneAuthCubit extends Cubit<PhoneAuthState> {
 
   _codeSent(String verificationId, int? resendToken) {
     print('code sent ');
-    print('Coode sent FUUUUUUUUUUUUUUUUUUUUk::111 ${verificationId}');
 
     this.verificationId = verificationId;
-    print('code sent FUUUUUUUUUUUUUUUUUUUUk::2222 ${verificationId}');
 
     emit(PhoneNumberSubmitted());
   }

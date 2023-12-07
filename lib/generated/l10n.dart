@@ -70,6 +70,26 @@ class S {
     );
   }
 
+  /// `Please enter your number`
+  String get PleaseEnterYourNumber {
+    return Intl.message(
+      'Please enter your number',
+      name: 'PleaseEnterYourNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid number`
+  String get InvalidNumber {
+    return Intl.message(
+      'Invalid number',
+      name: 'InvalidNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Next`
   String get Next {
     return Intl.message(

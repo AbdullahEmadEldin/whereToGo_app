@@ -16,13 +16,14 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.3
-  flutter_localization: ^0.1.14
-  geolocator: ^10.1.0
-  get_it: ^7.6.4
-  go_router: ^12.1.1
+  flutter_localization: ^0.1.14 # for supporting more than one language
+  geolocator: ^10.1.0 # for accessing GPS of device 
+  get_it: ^7.6.4 # dependency injection
+  go_router: ^12.1.1 
   google_fonts: ^6.1.0
   google_maps_flutter: ^2.5.0
-  pin_code_fields: ^8.0.1
+  pin_code_fields: ^8.0.1 # for building otp code blocks
+  material_floating_search_bar_2: ^0.5.0 # for building places search bar
 
 dev_dependencies:
   flutter_lints: ^3.0.1
@@ -34,5 +35,9 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+  fonts:
+    - family: Cairo-VariableFont_slnt,wght.ttf
+      fonts:
+        - asset: assets/fonts/Cairo-VariableFont_slnt,wght.ttf
 flutter_intl:
   enabled: true
